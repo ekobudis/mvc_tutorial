@@ -1,0 +1,110 @@
+<div class="row">
+    <div class="col-md-12">
+        <form method="post" class="floating-labels" >
+            <h2>Chart Of Account Information - <?=$data['coa']['acc_no']?></h2>
+            <div class="row">
+                <input type="hidden" name="id" value="<?=$data['coa']['id']?>" />
+                <div class="form-group m-b-7 col-sm-6">
+                    <select class="form-control" name="account_type" id="account_type" required>
+                        <option value=''>  </option>
+                        <option value='1'>Cash & Bank</option>
+                        <option value='2'>Account Receivable</option>
+                        <option value='3'>Piutang Non Usaha</option>
+                        <option value='4'>Inventory</option>
+                        <option value='5'>Work In Progress</option>
+                        <option value='6'>Current Asset</option>
+                        <option value='7'>Fixed Asset</option>
+                        <option value='8'>Accumulation Depreciation</option>
+                        <option value='9'>Account Payable</option>
+                        <option value='10'>Hutang Non Usaha</option>
+                        <option value='11'>Hutang Pajak</option>
+                        <option value='12'>Pendapatan Diterima Dimuka</option>
+                        <option value='13'>Hutang Lancar Lainnya</option>
+                        <option value='14'>Hutang Jangka Panjang</option>
+                        <option value='15'>Equity</option>
+                        <option value='16'>Revenue</option>
+                        <option value='17'>COGS</option>
+                        <option value='18'>Expenses</option>
+                        <option value='19'>Others Income</option>
+                        <option value='20'>Others Expenses</option>
+                    </select>
+                    <label for="account_type">Account Type</label>
+                </div>
+                <div class="form-group m-b-7 col-sm-4">
+                    <input type="text" size="10" class="form-control" required name="account_no" id="account_no">
+                    <label for="account_no">Account No</label>
+                </div>
+                <div class="form-group m-b-7 col-sm-10">
+                    <input type="text" size="60" class="form-control" required name="account_name" id="account_name">
+                    <label for="account_name">Account Name</label>
+                </div>
+                <div class="form-group m-b-7 col-sm-2">
+                    <input type="checkbox" class="form-control" name="group_account" id="group_account">
+                </div>
+                <div class="form-group m-b-7 col-sm-6" id="subaccount">
+                    <select class="form-control field__input--select" name="account_group" id="sub_account">
+                        <option value="">  </option>
+                    </select>
+                    <label for="sub_account">Account Group</label>
+                </div>
+                <div class="form-group m-b-7 col-sm-6" id="currency">
+                    <select class="form-control" name="account_curr" id="account_curr">
+                        <option value="0"> </option>
+                        <?php foreach($data['currencys'] as $data_curr) { ?>
+                        <option value="<?=$data_curr['id']?>"><?=$data_curr['curr_id']?></option>
+                        <?php } ?>
+                    </select>
+                    <label for="account_curr">Currency</label>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <button type="submit" class="btn btn-submit btn-success btn-rounded"><i class="fa fa-save "></i> Update</button>
+                <a href="<?=Config::get('url_path')?>coas/" class="btn btn-md btn-info btn-rounded"><i class="glyphicon glyphicon-backward"></i> Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="<?=Config::get('url_path')?>webroot/js/jquery.min.js"></script>
+<script type="text/javascript">
+    //jQuery.noConflict();
+    $(document).ready( function(){
+
+        changeAccountType();
+        GroupingAccount();
+
+        function GroupingAccount() {
+            var group_id= $( "input:checked" ).length;
+            if(group_id==1){
+                //$('#subaccount').show();
+            }else{
+                //$('#subaccount').hide();
+            }
+        }
+
+        function changeAccountType(){
+            var acc_type=$("#account_type").val();
+            if(acc_type!=''){
+                $.ajax({
+                    type:'post',
+                    dataType: 'json',
+                    url:'<?=Config::get("url_path")?>coas/lookup/' + acc_type,
+                    success:function(data){
+                        //$('#sub_account').html(data);
+                        console.log(data);
+                        //alert('Hasilnya ' + data);
+                    }
+                });
+            }
+        }
+
+        $('#group_account').click(function () {
+            GroupingAccount();
+        });
+
+        $('#account_type').change(function(){
+            changeAccountType();
+        });
+
+    });
+</script>

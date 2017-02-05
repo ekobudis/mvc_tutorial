@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-md-12">
+        <form method="post" class="floating-labels">
+            <h2>Currency Information </h2>
+            <div class="row">
+                <div class="form-group m-b-7 col-sm-6">
+                    <input type="text" size="5" class="form-control" required name="curr_id" id="curr_id"><span class="highlight"></span> <span class="bar"></span>
+                    <label for="curr_id">Currency ID</label>
+                </div>
+                <div class="form-group m-b-7 col-sm-6">
+                    <input type="text" size="30" class="form-control" required name="curr_name" id="curr_name"><span class="highlight"></span> <span class="bar"></span>
+                    <label for="curr_name">Currency Name</label>
+                </div>
+                <div class="form-group m-b-7 col-sm-6">
+                    <input type="number" class="form-control" required name="curr_rate" id="curr_rate"><span class="highlight"></span> <span class="bar"></span>
+                    <label for="curr_rate">Currency Rate</label>
+                </div>
+                <div class="form-group m-b-7 col-sm-6">
+                    <input type="text" size="10" class="form-control" required name="curr_symbol" id="curr_symbol"><span class="highlight"></span> <span class="bar"></span>
+                    <label for="curr_symbol">Currency Symbol</label>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <button type="submit" class="btn btn-submit btn-success btn-rounded"><i class="fa fa-save "></i> Save</button>
+                <a href="<?=Config::get('url_path')?>currencys/" class="btn btn-md btn-info btn-rounded"><i class="glyphicon glyphicon-backward"></i> Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

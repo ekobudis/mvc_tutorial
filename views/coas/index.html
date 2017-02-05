@@ -1,0 +1,79 @@
+
+    <div class="row">
+        <div class="table-responsive col-md-12">
+            <div class="portlet-body">
+                <div class="table-container">
+                    <table class="table table-bordered table-hover table-striped" id="list_data" >
+                        <thead>
+                        <tr>
+                            <th colspan="6">
+                                <a href="<?=Config::get('url_path')?>coas/add/" class="fa fa-plus btn btn-info btn-rounded"data-toggle="tooltip" data-placement="top" title="Add New"></a>
+                                <div class="actions pull-right">
+                                    <div class="btn-group">
+                                        <a class="btn red btn-outline btn-circle" href="javascript:;" data-toggle="dropdown">
+                                            <i class="fa fa-share"></i>
+                                            <span class="hidden-xs"> Tools </span>
+                                            <i class="fa fa-angle-down"></i>
+                                        </a>
+                                        <ul class="dropdown-menu pull-right">
+                                            <li>
+                                                <a href="javascript:;"> Export to Excel </a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;"> Export to CSV </a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;"> Save to PDF </a>
+                                            </li>
+                                            <li class="divider"> </li>
+                                            <li>
+                                                <a href="javascript:;"> Print </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th width="13%">Account No</th>
+                            <th width="30%">Account Name</th>
+                            <th width="12%">Sub Account</th>
+                            <th width="20%">Account Type</th>
+                            <th width="15%">Status</th>
+                            <th width="10%">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php if(!empty($data['coas'])) { ?>
+                        <?php foreach($data['coas'] as $page_data) { ?>
+                        <tr>
+                            <td><?=$page_data['acc_no']?></td>
+                            <td><?=$page_data['acc_name']?></td>
+                            <td><?=$page_data['sub_acc_no']?></td>
+                            <td><?=$page_data['typeakun']?></td>
+                            <td align="center">
+                                <div class="btn-group btn-toggle">
+                                    <?php if($page_data['acc_status']==0){ ?>
+                                    <button class="btn btn-xs btn-primary active">Active</button>
+                                    <button class="btn btn-xs btn-default">In Active</button>
+                                    <?php } else { ?>
+                                    <button class="btn btn-xs btn-default">Active</button>
+                                    <button class="btn btn-xs btn-primary active">In Active</button>
+                                    <?php } ?>
+                                </div>
+                            </td>
+                            <td align="center">
+                                <a href="<?=Config::get('url_path')?>coas/edit/<?=$page_data['id']?>" data-toggle="tooltip" data-placement="top" title="Modify"><i class="fa fa-pencil fa-fw"></i></a>&nbsp;
+                                <a href="<?=Config::get('url_path')?>coas/delete/<?=$page_data['id']?>" onclick="return confirmDelete();" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash-o fa-fw"></i></a>
+                            </td>
+                        </tr>
+                        <?php } ?>
+                        <?php } ?>
+                        </tbody>
+                    </table>
+                    <br/>
+                </div>
+            </div>
+        </div>
+    </div>
+

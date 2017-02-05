@@ -1,0 +1,68 @@
+
+    <div class="row">
+        <div class="table-responsive col-md-12">
+            <div class="portlet-body">
+                <h2 class="section__title">Currency Information</h2><br>
+                <div class="table-container">
+                    <table class="table table-bordered table-hover table-striped" id="list_data" >
+                        <thead>
+                        <tr>
+                            <th colspan="6">
+                                <a href="<?=Config::get('url_path')?>currencys/add/" class="fa fa-plus btn btn-info btn-rounded" data-toggle="tooltip" data-placement="top" title="Add New"></a>
+                                <div class="actions pull-right">
+                                    <div class="btn-group">
+                                        <a class="btn red btn-outline btn-circle" href="javascript:;" data-toggle="dropdown">
+                                            <i class="fa fa-share"></i>
+                                            <span class="hidden-xs"> Tools </span>
+                                            <i class="fa fa-angle-down"></i>
+                                        </a>
+                                        <ul class="dropdown-menu pull-right">
+                                            <li>
+                                                <a href="javascript:;"> Export to Excel </a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;"> Export to CSV </a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;"> Save to PDF </a>
+                                            </li>
+                                            <li class="divider"> </li>
+                                            <li>
+                                                <a href="javascript:;"> Print </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th width="13%">Currency ID</th>
+                            <th width="30%">Currency Name</th>
+                            <th width="10%">Currency Rate</th>
+                            <th width="10%">Currency Symbol</th>
+                            <th width="10%">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php if(!empty($data['currencys'])) { ?>
+                            <?php foreach($data['currencys'] as $page_data) { ?>
+                            <tr>
+                                <td><?=$page_data['curr_id']?></td>
+                                <td><?=$page_data['curr_name']?></td>
+                                <td align='right'><?php echo number_format($page_data['curr_rate'],0,'.',','); ?></td>
+                                <td><?=$page_data['curr_symbol']?></td>
+                                <td align="center">
+                                    <a href="<?=Config::get('url_path')?>currencys/edit/<?=$page_data['id']?>" data-toggle="tooltip" data-placement="top" title="Modify"><i class="fa fa-pencil fa-fw"></i></a>&nbsp;
+                                    <a href="<?=Config::get('url_path')?>currencys/delete/<?=$page_data['id']?>" onclick="return confirmDelete();" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash-o fa-fw"></i></a>
+                                </td>
+                            </tr>
+                            <?php } ?>
+                        <?php } ?>
+                        </tbody>
+                    </table>
+                    <br/>
+                </div>
+            </div>
+        </div>
+    </div>
+

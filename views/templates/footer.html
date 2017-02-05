@@ -1,0 +1,47 @@
+
+        <footer class="footer text-center"> 2016 &copy; Shinobi, Allright reserved </footer>
+    </div>
+<!-- /#page-wrapper -->
+</div>
+<!-- /#wrapper -->
+<!-- jQuery -->
+    <script src="<?=Config::get('url_path')?>webroot/js/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="<?=Config::get('url_path')?>webroot/js/bootstrap.min.js"></script>
+    <script src="<?=Config::get('url_path')?>webroot/datatables/jquery.dataTables.js"></script>
+    <script src="<?=Config::get('url_path')?>webroot/datatables/dataTables.bootstrap.js"></script>
+    <script src="<?=Config::get('url_path')?>webroot/js/sidebar-nav.min.js"></script>
+
+    <script src="<?=Config::get('url_path')?>webroot/js/custom.min.js"></script>
+    <script src="<?=Config::get('url_path')?>webroot/js/jquery.toast.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            /*$.toast({
+             heading: 'Welcome to SIPMB',
+             text: 'Use the predefined ones, or specify a custom position object.',
+             position: 'top-right',
+             loaderBg:'#ff6849',
+             icon: 'info',
+             hideAfter: 3500,
+
+             stack: 6
+             });*/
+
+            $("#list_data").dataTable();
+            //alert('Test Javascript');
+            $("#linkmenu a").click(function() {
+                var url = $(this).attr('href');
+                $("#file_content").load(url);
+                return false;
+            });
+            $('.form-control').on('focus blur', function (e) {
+                $(this).parents('.form-group').toggleClass('focused', (e.type === 'focus' || this.value.length > 0));
+            }).trigger('blur');
+
+        });
+    </script>
+    <!--Style Switcher -->
+    <script src="<?=Config::get('url_path')?>webroot/js/jQuery.style.switcher.js"></script>
+    </body>
+    </html>
